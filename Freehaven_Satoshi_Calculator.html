@@ -33,6 +33,7 @@
                 var totalCoins = coins * percent;
                 var stat = price / totalCoins;
                 var stat1 = stat * 100000000000;
+		stat = stat * 1000;
                 satoshi.value = stat.toFixed(9);
                 btc.value = stat1.toFixed(2);
             }
