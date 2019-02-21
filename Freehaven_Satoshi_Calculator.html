@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Freehaven SAT Calculator</title>
+		<title>SWAP SAT Calculator</title>
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>		
 	</head>
@@ -9,14 +9,14 @@
         <script>
             //api call to get hashrate and block reward
             $.ajax({
-                url: 'https://freehaven.pocketwhale.info:8099/stats',
+                url: 'https://swap.pocketwhale.info:8099/stats',
                 dataType: 'json',
                 async: true,
                 success: function(data) {
                     let reward = document.getElementById("txtReward");
                     reward.value = (data.lastblock.reward / data.config.coinUnits).toFixed(3);
                     let hash = document.getElementById("txtHash");
-                    hash.value = (data.network.difficulty / 15 / 1000000).toFixed(2);
+                    hash.value = (data.network.difficulty / 15 * 32 / 1000).toFixed(2);
                 }
             });
             //calculates mining price
@@ -33,22 +33,21 @@
                 var totalCoins = coins * percent;
                 var stat = price / totalCoins;
                 var stat1 = stat * 100000000000;
-		stat = stat * 1000;
+		        stat = stat * 1000;
                 satoshi.value = stat.toFixed(9);
                 btc.value = stat1.toFixed(2);
             }
         </script>
-        <h1>Freehaven Satoshi Mining Price</h1>
+        <h1>SWAP Satoshi Mining Price</h1>
         <p>
-            Network Hashrate:<input type="text" id="txtHash" size="1">MH/s<br><br>
-            MRR Price:<input type="text" id="txtPrice" size="7">BTC/KH/day<br><br>
-            Block Reward:<input type="text" id="txtReward" size="1">XFH<br><br>
+            Network Hashrate:<input type="text" id="txtHash" size="1">kG/s<br><br>
+            MRR Price:<input type="text" id="txtPrice" size="7">BTC/G/day<br><br>
+            Block Reward:<input type="text" id="txtReward" size="1">XWP<br><br>
             Block Time: 15 Seconds<br><br>
             <button onclick="calculate()">Submit</button><br><br>
             Mining Price BTC:<input type="text" id="txtSatoshi" readonly="readonly" size="7"><br><br>
             Satoshi Mining Price:<input type="text" id="txtBTC" readonly="readonly" size="4"><br><br><br><br>
-            <h2><a href= "https://www.miningrigrentals.com/rigs/cryptonotefh" target="_blank">Freehaven Mining Rig Rental Price</a></h2>
+            <h2><a href= "https://www.miningrigrentals.com/rigs/cuckoocycle29swap" target="_blank">SWAP Mining Rig Rental Price</a></h2>
         </p>
 	</body>
 </html>
-
